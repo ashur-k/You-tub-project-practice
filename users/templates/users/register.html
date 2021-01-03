@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+{% include 'material/includes/material_css.html' %}
+{% include 'material/includes/material_js.html' %}
+{% load material_form %}
+{% block content %}
+    <div class="content-section">
+        <form  method="POST">
+            {% csrf_token %}
+            <fieldset class="">
+                <legend class="">Join Today</legend>
+                   {% form form=form %}{% endform %}
+            </fieldset>
+            <div class="">
+                <button type="submit" class="btn btn-outline-info">Sign Up</button>
+            </div>
+        </form>
+        <div class="">
+            <small class="">
+                Already have an account?
+                <a href="">Sing In</a>
+            </small>
+        </div>
+    </div>
+{% endblock content%}
