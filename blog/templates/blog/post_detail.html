@@ -1,27 +1,30 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <article class="media content-section" style="padding: 180px 20px; padding-top: 20px;">
-        <div class="col s2">
-            <img class="circle article-img" src="{{ object.author.profile.image.url }}" alt="">
-        </div>
-        <div class="col s10">
-            <div class="media-body">
-                <div class="article-metadata">
-                    <a class="mr-2" href="#">{{ object.author }}</a>
-                    <small class="text-muted">{{ object.date_posted | date:"F d, Y" }}</small>
-                    
-                </div>
-                <h5 class="article-title">{{ object.title }}</h5>
-                <p class="article-content"><blockquote>{{ object.content }}</blockquote></p>
+    <div class="col s12 m11">
+            
+            <div class="card horizontal">
+            <div class="" style="margin: 10px;">
+                <img class="circle article-img" src="{{ post.author.profile.image.url }}" alt="">
             </div>
-            {% if object.author == user %}
-                <div style="margin-top: 10px; margin-bottom: 10px;">
-                    <a class="btn green darken-1 white-text " href="{% url 'post-update' object.id %}">Update</a>
-                    <a class="btn red darken-4 btn-extra-small" href="{% url 'post-delete' object.id %}">Delete</a>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <h4 class="header"><a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a></h4>
+                    <h5><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h5>
+                    <small class="text-muted">{{ post.date_posted | date:"F d, Y" }}</small>
+                    <p class="article-content"><blockquote>{{ post.content }}</blockquote></p>
                 </div>
-            {% endif %}
+                 {% if post.author == user %}
+                <div class="card-action">
+               
+                    <div style="margin-top: 10px; margin-bottom: 10px;">
+                        <a class="btn green darken-1 white-text " href="{% url 'post-update' post.id %}">Update</a>
+                        <a class="btn red darken-4 btn-extra-small" href="{% url 'post-delete' post.id %}">Delete</a>
+                    </div>
+              
+                </div>
+                  {% endif %}
+            </div>
         </div>
-        
-    </article>
+        </div>
     
 {% endblock %}

@@ -10,7 +10,11 @@ def create_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
 
 
+''' So reason for profile error not exist was
+    because there were same email address for
+    2 different users.
+ '''
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, **kwargs):
-    # instance is user
+    print('Profile Updated', instance)
     instance.profile.save()
